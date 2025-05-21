@@ -35,7 +35,7 @@ contact_book/                   # Корневая папка проекта
 1. Клонируй репозиторий:
 
    ```bash
-   git clone https://github.com/твой-пользователь/contact_book.git
+   git clone https://github.com/Charky11/contact_book.git
    cd contact_book
    ```
 
