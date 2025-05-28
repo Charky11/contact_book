@@ -8,7 +8,8 @@ def print_menu():
     print("2. Добавить контакт")
     print("3. Найти контакт")
     print("4. Удалить контакт")
-    print("5. Выход")
+    print("5. Редактировать контакт")
+    print("6. Выход")
 
 def show_contacts(contacts):
     if not contacts:
@@ -40,6 +41,31 @@ def delete_contact(contacts):
     else:
         print("Некорректный номер.")
 
+
+def edit_contact(contacts):
+    name_to_edit = input("Введите имя контакта для редактирования: ").strip()
+    found = False
+    for contact in contacts:
+        if contact['name'].lower() == name_to_edit.lower():
+            print(f"Найден контакт: {contact}")
+            new_name = input(f"Введите новое имя (оставьте пустым для '{contact['name']}'): ").strip()
+            new_phone = input(f"Введите новый телефон (оставьте пустым для '{contact['phone']}'): ").strip()
+            new_email = input(f"Введите новый email (оставьте пустым для '{contact['email']}'): ").strip()
+
+            if new_name:
+                contact['name'] = new_name
+            if new_phone:
+                contact['phone'] = new_phone
+            if new_email:
+                contact['email'] = new_email
+
+            print(f"Контакт '{name_to_edit}' успешно обновлён: {contact}")
+            found = True
+            break
+    if not found:
+        print(f"Контакт '{name_to_edit}' не найден.")
+
+
 def main():
     contacts = load_contacts(DATA_FILE)
 
@@ -56,6 +82,8 @@ def main():
         elif choice == "4":
             delete_contact(contacts)
         elif choice == "5":
+            edit_contact(contacts)
+        elif choice == "6":
             save_contacts(DATA_FILE, contacts)
             print("До свидания!")
             break
